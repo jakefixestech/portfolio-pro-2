@@ -52,7 +52,7 @@ const ogImageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, siteU
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-    <meta name="theme-color" content="#ea580c" />
+    <meta name="theme-color" content="#c2410c" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -109,7 +109,7 @@ const ogImageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, siteU
   <body class="flex min-h-screen flex-col bg-zinc-950 text-white antialiased">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-orange-600 focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-orange-700 focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2"
     >
       Skip to main content
     </a>
@@ -149,12 +149,14 @@ const ogImageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, siteU
   /* accent-light = orange-500 */
   /* accent-dark = orange-700 */
 
+  /* FIX: btn-primary background changed from #ea580c (orange-600, 3.55:1)
+     to #c2410c (orange-700, 5.08:1) to pass WCAG AA contrast requirement */
   .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0.75rem 1.5rem;
-    background-color: #ea580c;
+    background-color: #c2410c;
     color: white;
     font-family: var(--font-display);
     font-weight: 700;
@@ -165,7 +167,7 @@ const ogImageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, siteU
   }
 
   .btn-primary:hover {
-    background-color: #c2410c;
+    background-color: #9a3412;
   }
 
   .btn-primary:focus {
@@ -173,9 +175,7 @@ const ogImageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, siteU
   }
 
   .btn-primary:focus-visible {
-    ring: 2px solid #ea580c;
-    ring-offset: 2px;
-    outline: 2px solid #ea580c;
+    outline: 2px solid #c2410c;
     outline-offset: 2px;
   }
 
@@ -216,7 +216,7 @@ const ogImageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, siteU
   }
 
   .social-link:hover {
-    background-color: #ea580c;
+    background-color: #c2410c;
     color: white;
   }
 
@@ -225,7 +225,7 @@ const ogImageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, siteU
   }
 
   .social-link:focus-visible {
-    outline: 2px solid #ea580c;
+    outline: 2px solid #c2410c;
     outline-offset: 2px;
   }
 
@@ -312,7 +312,7 @@ const ogImageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, siteU
   }
 
   :focus-visible {
-    outline: 2px solid #ea580c;
+    outline: 2px solid #c2410c;
     outline-offset: 2px;
   }
 </style>
