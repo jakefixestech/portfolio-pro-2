@@ -1,0 +1,265 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const coaches = [
+  {
+    initials: 'MR',
+    name: 'Marcus Rivera',
+    title: 'Head Coach & Founder',
+    certifications: ['CrossFit Level 3', 'USAW Sports Performance', 'Precision Nutrition L1'],
+    bio: 'With over 15 years of coaching experience, Marcus founded Summit Fitness to create a space where athletes of all levels can push their limits. His passion for functional fitness and community building drives everything we do.'
+  },
+  {
+    initials: 'SK',
+    name: 'Sarah Kim',
+    title: 'Strength & Conditioning Coach',
+    certifications: ['CrossFit Level 2', 'CSCS', 'FMS Certified'],
+    bio: 'Sarah brings a decade of competitive powerlifting experience to Summit. She specializes in helping members build foundational strength and perfect their lifting technique, ensuring safe and effective progress.'
+  },
+  {
+    initials: 'JT',
+    name: 'James Thompson',
+    title: 'Endurance & Mobility Coach',
+    certifications: ['CrossFit Level 2', 'ROMWOD Certified', 'Endurance Specialty'],
+    bio: 'A former triathlete, James focuses on metabolic conditioning and recovery. His classes emphasize sustainable training practices, helping athletes avoid burnout while achieving peak performance.'
+  }
+];
+---
+
+<Layout
+  title="About Us | Summit Fitness & CrossFit"
+  description="Learn about Summit Fitness & CrossFit's mission, meet our expert coaching team, and discover our world-class facility. Join our community today."
+>
+  <!-- Hero Section -->
+  <section
+    class="relative py-20 md:py-28 bg-zinc-900"
+    aria-labelledby="hero-heading"
+  >
+    <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-orange-600/10 to-transparent"></div>
+      <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-orange-600/30 to-transparent"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <h1
+          id="hero-heading"
+          class="font-display text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight mb-6"
+        >
+          About <span class="text-orange-500">Summit</span>
+        </h1>
+        <p class="text-lg md:text-xl text-zinc-300 leading-relaxed">
+          We're more than a gym — we're a community of athletes, beginners, and everyone in between,
+          united by one goal: becoming the strongest version of ourselves. At Summit Fitness & CrossFit,
+          every rep counts, every member matters, and every day is an opportunity to rise.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section
+    class="py-16 md:py-24 bg-zinc-950"
+    aria-labelledby="story-heading"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-12 h-1 bg-orange-600" aria-hidden="true"></div>
+          <h2
+            id="story-heading"
+            class="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight"
+          >
+            Our Story
+          </h2>
+        </div>
+
+        <div class="space-y-6 text-zinc-300 leading-relaxed">
+          <p class="text-lg">
+            Summit Fitness & CrossFit was born in 2015 from a simple belief: that fitness should be
+            accessible, challenging, and deeply personal. Our founder, Marcus Rivera, saw too many
+            people struggling alone in traditional gyms — intimidated by equipment, unsure of their
+            form, and lacking the motivation to push through plateaus. He knew there had to be a
+            better way.
+          </p>
+          <p class="text-lg">
+            What started as a 2,000 square foot box with a handful of barbells has grown into a
+            10,000 square foot training facility with over 500 active members. But the heart of
+            Summit remains the same: a tight-knit community where coaches know your name, your
+            goals, and what it takes to help you achieve them.
+          </p>
+          <p class="text-lg">
+            Our commitment to results is unwavering. We combine evidence-based programming with
+            personalized coaching to ensure every member — whether you're a first-time gym-goer or
+            a competitive athlete — gets the guidance you deserve. At Summit, you're not just
+            another membership number. You're family.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet the Coaches Section -->
+  <section
+    class="py-16 md:py-24 bg-zinc-900"
+    aria-labelledby="coaches-heading"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <div class="flex items-center justify-center gap-4 mb-4">
+          <div class="w-12 h-1 bg-orange-600" aria-hidden="true"></div>
+          <h2
+            id="coaches-heading"
+            class="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight"
+          >
+            Meet the Coaches
+          </h2>
+          <div class="w-12 h-1 bg-orange-600" aria-hidden="true"></div>
+        </div>
+        <p class="text-zinc-400 max-w-2xl mx-auto">
+          Our certified coaching team brings decades of combined experience to help you reach your goals.
+        </p>
+      </div>
+
+      <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" role="list">
+        {coaches.map((coach) => (
+          <li>
+            <article
+              class="bg-zinc-950 rounded-lg p-6 md:p-8 border border-zinc-800 transition-all duration-300 hover:border-orange-600/50 hover:shadow-lg h-full flex flex-col"
+              aria-labelledby={`coach-${coach.initials}`}
+            >
+              <div class="flex flex-col items-center text-center">
+                <div
+                  class="w-24 h-24 rounded-full bg-gradient-to-br from-orange-600 to-orange-700 flex items-center justify-center mb-6"
+                  aria-hidden="true"
+                >
+                  <span class="font-display text-2xl font-bold text-white">
+                    {coach.initials}
+                  </span>
+                </div>
+
+                <h3 id={`coach-${coach.initials}`} class="font-display text-xl font-bold uppercase tracking-tight mb-1">
+                  {coach.name}
+                </h3>
+                <p class="text-orange-500 font-medium mb-4">
+                  {coach.title}
+                </p>
+
+                <ul class="flex flex-wrap justify-center gap-2 mb-6" aria-label={`${coach.name}'s certifications`}>
+                  {coach.certifications.map((cert) => (
+                    <li class="px-3 py-1 bg-zinc-800 rounded-full text-xs text-zinc-300 font-medium">
+                      {cert}
+                    </li>
+                  ))}
+                </ul>
+
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                  {coach.bio}
+                </p>
+              </div>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Our Facility Section -->
+  <section
+    class="py-16 md:py-24 bg-zinc-950"
+    aria-labelledby="facility-heading"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
+
+        <!-- Gym Photo -->
+        <div class="order-2 lg:order-1">
+          <div class="relative overflow-hidden rounded-lg">
+            <img
+              src="/gym.jpg"
+              alt="Summit Fitness & CrossFit facility interior showing workout floor with barbells, pull-up rigs, and equipment"
+              class="w-full h-auto object-cover aspect-[4/3]"
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+            <div class="absolute top-0 left-0 w-20 h-20 border-l-4 border-t-4 border-orange-600 rounded-tl-lg" aria-hidden="true"></div>
+            <div class="absolute bottom-0 right-0 w-20 h-20 border-r-4 border-b-4 border-orange-600 rounded-br-lg" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="order-1 lg:order-2">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-1 bg-orange-600" aria-hidden="true"></div>
+            <h2
+              id="facility-heading"
+              class="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight"
+            >
+              Our Facility
+            </h2>
+          </div>
+
+          <div class="space-y-4 text-zinc-300 leading-relaxed">
+            <p class="text-lg">
+              Our 10,000 square foot facility is designed for serious training. Featuring a
+              dedicated Olympic lifting platform, full rig system with 20+ stations, competition
+              rowers and bikes, and a complete dumbbell set up to 150 lbs.
+            </p>
+            <p class="text-lg">
+              Beyond the equipment, we've created an environment that inspires. Natural light
+              floods our open floor plan, motivational murals line the walls, and a premium
+              sound system keeps the energy high during every class.
+            </p>
+          </div>
+
+          <ul class="mt-8 grid grid-cols-2 gap-4" aria-label="Featured equipment">
+            {['Rogue Fitness Rig', 'Concept2 Rowers', 'Assault Bikes', 'Eleiko Barbells', 'Mobility Zone', 'Locker Rooms'].map((item) => (
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0" aria-hidden="true"></span>
+                <span class="text-zinc-300">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section
+    class="py-16 md:py-24 bg-zinc-900 relative overflow-hidden"
+    aria-labelledby="cta-heading"
+  >
+    <div class="absolute inset-0" aria-hidden="true">
+      <div class="absolute top-0 left-1/4 w-64 h-64 bg-orange-600/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-orange-600/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2
+          id="cta-heading"
+          class="font-display text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight mb-6"
+        >
+          Ready to Join the <span class="text-orange-500">Community</span>?
+        </h2>
+        <p class="text-lg text-zinc-300 mb-8 leading-relaxed">
+          Take the first step toward your strongest self. Whether you're new to fitness or a
+          seasoned athlete, there's a place for you at Summit. Your free trial class is waiting.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/membership" class="btn-primary text-lg">
+            Join Now
+          </a>
+          <a
+            href="/schedule"
+            class="inline-flex items-center justify-center px-6 py-3 border-2 border-orange-600 text-orange-500 font-bold uppercase tracking-wide rounded transition-all duration-200 hover:bg-orange-600 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
+          >
+            View Schedule
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

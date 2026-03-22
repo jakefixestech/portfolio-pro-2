@@ -1,0 +1,255 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const timeSlots = ['5:00 AM', '6:00 AM', '7:00 AM', '8:00 AM', '9:00 AM', '12:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM'];
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+type ClassSlot = { name: string; coach: string; } | null;
+
+const schedule: Record<string, Record<string, ClassSlot>> = {
+  '5:00 AM': { Monday: { name: 'CrossFit', coach: 'Mike R.' }, Tuesday: { name: 'CrossFit', coach: 'Sarah T.' }, Wednesday: { name: 'CrossFit', coach: 'Mike R.' }, Thursday: { name: 'CrossFit', coach: 'Sarah T.' }, Friday: { name: 'CrossFit', coach: 'Jake M.' }, Saturday: null, Sunday: null },
+  '6:00 AM': { Monday: { name: 'CrossFit', coach: 'Sarah T.' }, Tuesday: { name: 'CrossFit', coach: 'Mike R.' }, Wednesday: { name: 'CrossFit', coach: 'Sarah T.' }, Thursday: { name: 'CrossFit', coach: 'Mike R.' }, Friday: { name: 'CrossFit', coach: 'Sarah T.' }, Saturday: { name: 'CrossFit', coach: 'Jake M.' }, Sunday: null },
+  '7:00 AM': { Monday: { name: 'CrossFit', coach: 'Jake M.' }, Tuesday: { name: 'CrossFit', coach: 'Jake M.' }, Wednesday: { name: 'CrossFit', coach: 'Jake M.' }, Thursday: { name: 'CrossFit', coach: 'Jake M.' }, Friday: { name: 'CrossFit', coach: 'Mike R.' }, Saturday: { name: 'CrossFit', coach: 'Mike R.' }, Sunday: { name: 'Mobility', coach: 'Lisa P.' } },
+  '8:00 AM': { Monday: { name: 'Open Gym', coach: 'Dan K.' }, Tuesday: { name: 'Foundations', coach: 'Lisa P.' }, Wednesday: { name: 'Open Gym', coach: 'Dan K.' }, Thursday: { name: 'Foundations', coach: 'Lisa P.' }, Friday: { name: 'Open Gym', coach: 'Dan K.' }, Saturday: { name: 'Weightlifting', coach: 'Dan K.' }, Sunday: { name: 'Open Gym', coach: 'Jake M.' } },
+  '9:00 AM': { Monday: { name: 'Open Gym', coach: 'Dan K.' }, Tuesday: { name: 'Open Gym', coach: 'Dan K.' }, Wednesday: { name: 'Open Gym', coach: 'Dan K.' }, Thursday: { name: 'Open Gym', coach: 'Dan K.' }, Friday: { name: 'Open Gym', coach: 'Dan K.' }, Saturday: { name: 'CrossFit', coach: 'Sarah T.' }, Sunday: { name: 'Open Gym', coach: 'Jake M.' } },
+  '12:00 PM': { Monday: { name: 'CrossFit', coach: 'Lisa P.' }, Tuesday: { name: 'CrossFit', coach: 'Lisa P.' }, Wednesday: { name: 'CrossFit', coach: 'Lisa P.' }, Thursday: { name: 'CrossFit', coach: 'Lisa P.' }, Friday: { name: 'CrossFit', coach: 'Lisa P.' }, Saturday: null, Sunday: null },
+  '4:00 PM': { Monday: { name: 'Open Gym', coach: 'Jake M.' }, Tuesday: { name: 'Open Gym', coach: 'Jake M.' }, Wednesday: { name: 'Open Gym', coach: 'Jake M.' }, Thursday: { name: 'Open Gym', coach: 'Jake M.' }, Friday: { name: 'Open Gym', coach: 'Jake M.' }, Saturday: null, Sunday: null },
+  '5:00 PM': { Monday: { name: 'CrossFit', coach: 'Mike R.' }, Tuesday: { name: 'CrossFit', coach: 'Sarah T.' }, Wednesday: { name: 'CrossFit', coach: 'Mike R.' }, Thursday: { name: 'CrossFit', coach: 'Sarah T.' }, Friday: { name: 'CrossFit', coach: 'Mike R.' }, Saturday: null, Sunday: null },
+  '6:00 PM': { Monday: { name: 'CrossFit', coach: 'Sarah T.' }, Tuesday: { name: 'CrossFit', coach: 'Mike R.' }, Wednesday: { name: 'Weightlifting', coach: 'Dan K.' }, Thursday: { name: 'CrossFit', coach: 'Mike R.' }, Friday: { name: 'CrossFit', coach: 'Sarah T.' }, Saturday: null, Sunday: null },
+  '7:00 PM': { Monday: { name: 'Endurance', coach: 'Jake M.' }, Tuesday: { name: 'Foundations', coach: 'Lisa P.' }, Wednesday: { name: 'CrossFit', coach: 'Sarah T.' }, Thursday: { name: 'Endurance', coach: 'Jake M.' }, Friday: null, Saturday: null, Sunday: null },
+};
+
+function getClassColor(name: string): string {
+  const colors: Record<string, string> = {
+    CrossFit: 'bg-orange-600/20 border-orange-600/40 text-orange-400',
+    Weightlifting: 'bg-purple-500/20 border-purple-500/40 text-purple-400',
+    'Open Gym': 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400',
+    Foundations: 'bg-blue-500/20 border-blue-500/40 text-blue-400',
+    Mobility: 'bg-teal-500/20 border-teal-500/40 text-teal-400',
+    Endurance: 'bg-rose-500/20 border-rose-500/40 text-rose-400',
+  };
+  return colors[name] || 'bg-zinc-700/20 border-zinc-700/40 text-zinc-400';
+}
+
+const classColorMap: Record<string, string> = {
+  CrossFit: 'bg-orange-600/20',
+  Weightlifting: 'bg-purple-500/20',
+  'Open Gym': 'bg-emerald-500/20',
+  Foundations: 'bg-blue-500/20',
+  Mobility: 'bg-teal-500/20',
+  Endurance: 'bg-rose-500/20',
+};
+---
+
+<Layout
+  title="Schedule | Summit Fitness & CrossFit"
+  description="View our weekly class schedule. CrossFit, Olympic Weightlifting, Open Gym, and more. Find the perfect time to train at Summit Fitness."
+>
+  <!-- Hero -->
+  <section class="relative py-20 md:py-28 bg-zinc-900" aria-labelledby="hero-heading">
+    <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-orange-600/10 to-transparent"></div>
+      <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-orange-600/30 to-transparent"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <h1 id="hero-heading" class="font-display text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight mb-6">
+          Class <span class="text-orange-500">Schedule</span>
+        </h1>
+        <p class="text-lg md:text-xl text-zinc-300 leading-relaxed">
+          Plan your week with our comprehensive class schedule. From early morning CrossFit to evening specialty classes,
+          find the perfect time to train. All classes are coached and beginner-friendly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legend -->
+  <section class="py-8 bg-zinc-950 border-b border-zinc-800" aria-label="Class type legend">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+        <span class="text-sm text-zinc-400 font-medium">Class Types:</span>
+        {Object.entries(classColorMap).map(([name, color]) => (
+          <div class="flex items-center gap-2">
+            <span class={`w-3 h-3 rounded-sm ${color}`} aria-hidden="true"></span>
+            <span class="text-sm text-zinc-300">{name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule Table -->
+  <section class="py-12 md:py-20 bg-zinc-950" aria-labelledby="schedule-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 id="schedule-heading" class="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight mb-2">
+          Weekly Schedule
+        </h2>
+        <p class="text-zinc-400">Contact us to reserve your spot in any class</p>
+      </div>
+
+      <!-- Desktop Table -->
+      <div class="hidden lg:block overflow-x-auto">
+        <table class="w-full border-collapse" aria-label="Weekly class schedule">
+          <caption class="sr-only">Weekly class schedule showing time slots and available classes each day</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="p-3 text-left text-sm font-semibold text-zinc-400 uppercase tracking-wide bg-zinc-900 border border-zinc-800 w-24">Time</th>
+              {days.map((day) => (
+                <th scope="col" class="p-3 text-center text-sm font-semibold text-zinc-300 uppercase tracking-wide bg-zinc-900 border border-zinc-800">{day}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {timeSlots.map((time) => (
+              <tr>
+                <th scope="row" class="p-3 text-left text-sm font-medium text-orange-500 bg-zinc-900/50 border border-zinc-800 whitespace-nowrap">{time}</th>
+                {days.map((day) => {
+                  const classData = schedule[time]?.[day];
+                  return (
+                    <td class="p-2 border border-zinc-800 align-top min-w-[120px]">
+                      {classData ? (
+                        <div class={`block p-2 rounded border text-left ${getClassColor(classData.name)}`}>
+                          <span class="block text-sm font-bold">{classData.name}</span>
+                          <span class="block text-xs opacity-80">{classData.coach}</span>
+                        </div>
+                      ) : (
+                        <span class="block p-2 text-center text-zinc-700 text-sm" aria-label="No class scheduled">—</span>
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mobile Schedule -->
+      <div class="lg:hidden space-y-6">
+        {days.map((day) => (
+          <div class="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
+            <h3 class="p-4 bg-zinc-800/50 font-display text-lg font-bold uppercase tracking-tight text-center border-b border-zinc-700">
+              {day}
+            </h3>
+            <ul class="divide-y divide-zinc-800" role="list">
+              {timeSlots.map((time) => {
+                const classData = schedule[time]?.[day];
+                if (!classData) return null;
+                return (
+                  <li class="flex items-center justify-between p-4">
+                    <div class="flex items-center gap-4">
+                      <span class="text-sm font-medium text-orange-500 w-20">{time}</span>
+                      <div>
+                        <span class={`inline-block px-2 py-0.5 rounded text-xs font-bold ${getClassColor(classData.name)}`}>
+                          {classData.name}
+                        </span>
+                        <p class="text-sm text-zinc-400 mt-1">{classData.coach}</p>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+              {!timeSlots.some(time => schedule[time]?.[day]) && (
+                <li class="p-4 text-center text-zinc-500">No scheduled classes</li>
+              )}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Drop-In & Booking -->
+  <section class="py-12 md:py-20 bg-zinc-900" aria-labelledby="info-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="info-heading" class="sr-only">Drop-In Rates and Booking Information</h2>
+      <div class="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+        <!-- Drop-In Rates -->
+        <div class="bg-zinc-950 rounded-lg p-6 md:p-8 border border-zinc-800" aria-labelledby="dropin-heading">
+          <div class="flex items-start gap-4 mb-6">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-600/10 flex items-center justify-center" aria-hidden="true">
+              <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 id="dropin-heading" class="font-display text-xl font-bold uppercase tracking-tight mb-1">Drop-In Rates</h3>
+              <p class="text-zinc-400 text-sm">Visiting from out of town? Welcome to Summit!</p>
+            </div>
+          </div>
+          <ul class="space-y-4" role="list">
+            {[['Single Drop-In', '$25'], ['5-Class Pack', '$100'], ['10-Class Pack', '$175'], ['Weekly Unlimited', '$75']].map(([label, price]) => (
+              <li class="flex items-center justify-between py-3 border-b border-zinc-800 last:border-0">
+                <span class="text-zinc-300">{label}</span>
+                <span class="font-display font-bold text-orange-500 text-lg">{price}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-6 text-sm text-zinc-500">
+            Class packs never expire. Email us at <a href="mailto:info@summitfitness.com" class="text-orange-500 hover:underline focus:outline-none focus-visible:underline">info@summitfitness.com</a>
+          </p>
+        </div>
+
+        <!-- Booking Info -->
+        <div class="bg-zinc-950 rounded-lg p-6 md:p-8 border border-zinc-800" aria-labelledby="booking-heading">
+          <div class="flex items-start gap-4 mb-6">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-600/10 flex items-center justify-center" aria-hidden="true">
+              <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <h3 id="booking-heading" class="font-display text-xl font-bold uppercase tracking-tight mb-1">Book Your Classes</h3>
+              <p class="text-zinc-400 text-sm">Reserve your spot through our mobile app</p>
+            </div>
+          </div>
+          <div class="space-y-4 text-zinc-300">
+            <p class="leading-relaxed">We use <strong class="text-white">Wodify</strong> for all class reservations. Download the app to book classes, track your workouts, and stay connected with the Summit community.</p>
+            <ul class="space-y-3" role="list">
+              {['Reserve classes up to 7 days in advance', 'Cancel up to 2 hours before class starts', 'View WODs and track your PRs'].map((item) => (
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="mt-6">
+            <a href="/contact" class="btn-primary w-full text-center block">Contact to Book</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24 bg-zinc-950 relative overflow-hidden" aria-labelledby="cta-heading">
+    <div class="absolute inset-0" aria-hidden="true">
+      <div class="absolute top-0 left-1/4 w-64 h-64 bg-orange-600/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-orange-600/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 id="cta-heading" class="font-display text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight mb-6">
+          Ready to Get <span class="text-orange-500">Started</span>?
+        </h2>
+        <p class="text-lg text-zinc-300 mb-8 leading-relaxed">
+          Your first class is on us. Experience the Summit community and see why members stay for years.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/membership" class="btn-primary text-lg">Start Your Free Trial</a>
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center px-6 py-3 border-2 border-orange-600 text-orange-500 font-bold uppercase tracking-wide rounded transition-all duration-200 hover:bg-orange-600 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

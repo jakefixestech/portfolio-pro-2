@@ -1,0 +1,318 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "Summit Fitness & CrossFit | Littleton, NH",
+  description = "Push your limits. Reach your summit. Join Summit Fitness & CrossFit for expert coaching, world-class facilities, and a community dedicated to results.",
+  ogImage = "/images/og-default.jpg",
+} = Astro.props;
+
+const siteUrl = "https://pro2.jakefixestech.com";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, siteUrl).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Summit Fitness & CrossFit" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content="Summit Fitness & CrossFit" />
+    <meta property="og:site_name" content="Summit Fitness & CrossFit" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content="Summit Fitness & CrossFit" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <meta name="theme-color" content="#ea580c" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Analytics Placeholder -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    -->
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SportsActivityLocation",
+        "name": "Summit Fitness & CrossFit",
+        "description": "CrossFit and fitness gym serving the Littleton, NH area.",
+        "url": "https://pro2.jakefixestech.com",
+        "telephone": "(555) 123-4567",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Fitness Way",
+          "addressLocality": "Littleton",
+          "addressRegion": "NH",
+          "postalCode": "03561",
+          "addressCountry": "US"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "05:00",
+            "closes": "22:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday","Sunday"],
+            "opens": "07:00",
+            "closes": "20:00"
+          }
+        ],
+        "priceRange": "$$"
+      }
+    </script>
+  </head>
+  <body class="flex min-h-screen flex-col bg-zinc-950 text-white antialiased">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-orange-600 focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2"
+    >
+      Skip to main content
+    </a>
+
+    <Header />
+
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  @import "tailwindcss";
+
+  :root {
+    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+    --font-display: "Barlow Condensed", system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  /* Color mappings — replaces v0.dev custom classes */
+  /* charcoal-900 = zinc-950 */
+  /* charcoal-800 = zinc-900 */
+  /* charcoal-700 = zinc-800 */
+  /* charcoal-600 = zinc-700 */
+  /* accent = orange-600 */
+  /* accent-light = orange-500 */
+  /* accent-dark = orange-700 */
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    background-color: #ea580c;
+    color: white;
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+  }
+
+  .btn-primary:hover {
+    background-color: #c2410c;
+  }
+
+  .btn-primary:focus {
+    outline: none;
+  }
+
+  .btn-primary:focus-visible {
+    ring: 2px solid #ea580c;
+    ring-offset: 2px;
+    outline: 2px solid #ea580c;
+    outline-offset: 2px;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #d4d4d8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus {
+    color: #ea580c;
+  }
+
+  .nav-link:focus {
+    outline: none;
+  }
+
+  .nav-link:focus-visible {
+    outline: 2px solid #ea580c;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #27272a;
+    border-radius: 9999px;
+    color: #a1a1aa;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .social-link:hover {
+    background-color: #ea580c;
+    color: white;
+  }
+
+  .social-link:focus {
+    outline: none;
+  }
+
+  .social-link:focus-visible {
+    outline: 2px solid #ea580c;
+    outline-offset: 2px;
+  }
+
+  /* accent color utilities used inline by v0 output */
+  .text-accent { color: #ea580c; }
+  .text-accent-light { color: #f97316; }
+  .bg-accent { background-color: #ea580c; }
+  .bg-accent-dark { background-color: #c2410c; }
+  .bg-accent-light { background-color: #f97316; }
+  .border-accent { border-color: #ea580c; }
+  .fill-accent { fill: #ea580c; }
+  .fill-accent-light { fill: #f97316; }
+
+  /* charcoal utilities */
+  .bg-charcoal-900 { background-color: #09090b; }
+  .bg-charcoal-800 { background-color: #18181b; }
+  .bg-charcoal-700 { background-color: #27272a; }
+  .bg-charcoal-600 { background-color: #3f3f46; }
+  .border-charcoal-900 { border-color: #09090b; }
+  .border-charcoal-800 { border-color: #18181b; }
+  .border-charcoal-700 { border-color: #27272a; }
+  .border-charcoal-600 { border-color: #3f3f46; }
+  .fill-charcoal-900 { fill: #09090b; }
+  .fill-charcoal-800 { fill: #18181b; }
+  .text-charcoal-500 { color: #71717a; }
+  .text-charcoal-600 { color: #52525b; }
+
+  /* opacity variants used by v0 */
+  .bg-accent\/10 { background-color: rgb(234 88 12 / 0.1); }
+  .bg-accent\/20 { background-color: rgb(234 88 12 / 0.2); }
+  .bg-accent\/3 { background-color: rgb(234 88 12 / 0.03); }
+  .bg-accent\/5 { background-color: rgb(234 88 12 / 0.05); }
+  .border-accent\/30 { border-color: rgb(234 88 12 / 0.3); }
+  .border-accent\/40 { border-color: rgb(234 88 12 / 0.4); }
+  .border-accent\/50 { border-color: rgb(234 88 12 / 0.5); }
+  .text-accent\/80 { color: rgb(234 88 12 / 0.8); }
+  .via-accent\/30 { --tw-gradient-via: rgb(234 88 12 / 0.3); }
+  .from-accent\/10 { --tw-gradient-from: rgb(234 88 12 / 0.1); }
+  .shadow-accent\/5 { --tw-shadow-color: rgb(234 88 12 / 0.05); }
+  .shadow-accent\/10 { --tw-shadow-color: rgb(234 88 12 / 0.1); }
+  .hover\:shadow-accent\/5:hover { --tw-shadow-color: rgb(234 88 12 / 0.05); }
+  .hover\:bg-accent:hover { background-color: #ea580c; }
+  .hover\:text-accent:hover { color: #ea580c; }
+  .hover\:border-accent:hover { border-color: #ea580c; }
+  .hover\:border-accent\/50:hover { border-color: rgb(234 88 12 / 0.5); }
+  .hover\:text-accent-light:hover { color: #f97316; }
+  .focus\:text-accent:focus { color: #ea580c; }
+  .focus-visible\:ring-accent:focus-visible { --tw-ring-color: #ea580c; }
+  .hover\:text-white:hover { color: white; }
+  .focus\:bg-accent:focus { background-color: #ea580c; }
+  .focus\:text-white:focus { color: white; }
+  .bg-charcoal-700\/30 { background-color: rgb(39 39 42 / 0.3); }
+  .bg-charcoal-700\/50 { background-color: rgb(39 39 42 / 0.5); }
+  .bg-charcoal-800\/50 { background-color: rgb(24 24 27 / 0.5); }
+  .hover\:bg-charcoal-700\/30:hover { background-color: rgb(39 39 42 / 0.3); }
+  .hover\:bg-charcoal-700\/50:hover { background-color: rgb(39 39 42 / 0.5); }
+  .hover\:bg-charcoal-600:hover { background-color: #3f3f46; }
+  .hover\:bg-charcoal-700:hover { background-color: #27272a; }
+  .hover\:bg-charcoal-800:hover { background-color: #18181b; }
+  .divide-charcoal-700 > * + * { border-color: #27272a; }
+  .from-charcoal-800 { --tw-gradient-from: #18181b; }
+  .from-charcoal-900 { --tw-gradient-from: #09090b; }
+  .via-charcoal-800 { --tw-gradient-via: #18181b; }
+  .via-charcoal-900 { --tw-gradient-via: #09090b; }
+  .to-charcoal-800 { --tw-gradient-to: #18181b; }
+  .to-charcoal-900 { --tw-gradient-to: #09090b; }
+  .from-accent-dark { --tw-gradient-from: #c2410c; }
+  .via-accent { --tw-gradient-via: #ea580c; }
+  .to-accent-light { --tw-gradient-to: #f97316; }
+  .ring-offset-charcoal-900 { --tw-ring-offset-color: #09090b; }
+  .focus-visible\:ring-offset-charcoal-900:focus-visible { --tw-ring-offset-color: #09090b; }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid #ea580c;
+    outline-offset: 2px;
+  }
+</style>

@@ -1,0 +1,258 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const tiers = [
+  {
+    name: 'Foundations',
+    price: 99,
+    description: 'Perfect for beginners starting their fitness journey',
+    features: ['2 CrossFit classes per week', 'Unlimited Foundations classes', 'Access to Open Gym hours', 'InBody composition analysis (monthly)', 'Member app access', 'Locker room & showers'],
+    highlighted: false
+  },
+  {
+    name: 'Unlimited',
+    price: 149,
+    description: 'Our most popular plan for committed athletes',
+    features: ['Unlimited CrossFit classes', 'Unlimited specialty classes', 'All Open Gym access', 'Olympic Weightlifting sessions', 'Mobility & Recovery classes', 'InBody analysis (bi-weekly)', 'Priority class booking', 'Guest passes (2/month)'],
+    highlighted: true
+  },
+  {
+    name: 'Elite',
+    price: 199,
+    description: 'The complete package for serious results',
+    features: ['Everything in Unlimited', '2 personal training sessions/month', 'Custom nutrition coaching', 'Quarterly goal-setting sessions', 'Priority booking (48hr advance)', 'Exclusive member events', 'Free merchandise quarterly', 'Unlimited guest passes'],
+    highlighted: false
+  }
+];
+
+const faqs = [
+  { question: 'Is there a long-term contract?', answer: 'No contracts here. All our memberships are month-to-month with no long-term commitment required. We believe you should stay because you love it, not because you\'re locked in. You can cancel anytime with 30 days notice.' },
+  { question: 'What is your cancellation policy?', answer: 'We require 30 days written notice to cancel your membership. You can submit your cancellation request through our member app, via email, or in person at the front desk. Any remaining days on your billing cycle will be honored.' },
+  { question: 'Can complete beginners join?', answer: 'Absolutely! Our Foundations program is specifically designed for people with zero experience. You\'ll learn proper form, gym terminology, and build a solid base before joining regular classes. Many of our most dedicated members started as complete beginners.' },
+  { question: 'What should I wear and bring?', answer: 'Wear comfortable athletic clothing you can move freely in — shorts or leggings, a t-shirt, and athletic shoes with flat soles. Bring a water bottle and a small towel. We provide everything else you need.' },
+  { question: 'Is there an age requirement?', answer: 'Members must be at least 16 years old. Athletes aged 16-17 require a parent or guardian to sign a waiver. We also offer a Teen CrossFit program for ages 13-15 with parental supervision and modified programming.' },
+  { question: 'Do you offer family or couple discounts?', answer: 'Yes! We offer a 15% discount on additional memberships for immediate family members or couples living at the same address. Ask about our Family Plan when you sign up.' }
+];
+---
+
+<Layout
+  title="Membership | Summit Fitness & CrossFit"
+  description="Explore membership options at Summit Fitness & CrossFit. From beginner Foundations to Elite training packages, find the perfect plan for your fitness goals."
+>
+  <!-- Hero -->
+  <section class="relative py-20 md:py-28 bg-zinc-900" aria-labelledby="hero-heading">
+    <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-orange-600/10 to-transparent"></div>
+      <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-orange-600/30 to-transparent"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <h1 id="hero-heading" class="font-display text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight mb-6">
+          Membership <span class="text-orange-500">Options</span>
+        </h1>
+        <p class="text-lg md:text-xl text-zinc-300 leading-relaxed">
+          Invest in yourself with a membership that fits your goals and lifestyle.
+          Whether you're just starting out or ready to take your training to the elite level,
+          we have a plan designed to help you succeed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="py-16 md:py-24 bg-zinc-950" aria-labelledby="pricing-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <div class="flex items-center justify-center gap-4 mb-4">
+          <div class="w-12 h-1 bg-orange-600" aria-hidden="true"></div>
+          <h2 id="pricing-heading" class="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight">Choose Your Plan</h2>
+          <div class="w-12 h-1 bg-orange-600" aria-hidden="true"></div>
+        </div>
+        <p class="text-zinc-400 max-w-2xl mx-auto">No hidden fees. No long-term contracts. Just straightforward pricing and unlimited potential.</p>
+      </div>
+
+      <div class="grid gap-6 lg:gap-8 md:grid-cols-3 max-w-6xl mx-auto">
+        {tiers.map((tier) => (
+          <article
+            class={`relative flex flex-col rounded-xl border transition-all duration-300 ${tier.highlighted ? 'bg-gradient-to-b from-zinc-900 to-zinc-950 border-orange-600 shadow-xl' : 'bg-zinc-900 border-zinc-800 hover:border-zinc-700'}`}
+          >
+            {tier.highlighted && (
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-orange-600 text-white text-sm font-bold uppercase tracking-wide shadow-lg">
+                  Most Popular
+                </span>
+              </div>
+            )}
+
+            <div class={`p-6 md:p-8 flex flex-col flex-1 ${tier.highlighted ? 'pt-10' : ''}`}>
+              <h3 class="font-display text-2xl font-bold uppercase tracking-tight mb-2">{tier.name}</h3>
+              <p class="text-zinc-400 text-sm mb-6">{tier.description}</p>
+
+              <div class="flex items-baseline gap-1 mb-6">
+                <span class="text-4xl md:text-5xl font-display font-bold text-orange-500">${tier.price}</span>
+                <span class="text-zinc-400 text-lg">/month</span>
+              </div>
+
+              <ul class="space-y-3 mb-8 flex-1" role="list">
+                {tier.features.map((feature) => (
+                  <li class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span class="text-zinc-300">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="/contact"
+                class={`w-full inline-flex items-center justify-center px-6 py-3 font-bold uppercase tracking-wide rounded transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 ${tier.highlighted ? 'bg-orange-600 text-white hover:bg-orange-500' : 'border-2 border-orange-600 text-orange-500 hover:bg-orange-600 hover:text-white'}`}
+              >
+                Get Started
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <p class="text-center text-zinc-500 text-sm mt-8">All memberships include 24/7 member support and access to our mobile app</p>
+    </div>
+  </section>
+
+  <!-- Free Trial -->
+  <section class="py-16 md:py-24 bg-zinc-900" aria-labelledby="trial-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-zinc-950 rounded-2xl border border-orange-600/30 p-8 md:p-12 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-orange-600/5 rounded-full blur-3xl" aria-hidden="true"></div>
+          <div class="absolute bottom-0 left-0 w-48 h-48 bg-orange-600/5 rounded-full blur-2xl" aria-hidden="true"></div>
+
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center gap-8">
+            <div class="flex-1">
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-600/10 border border-orange-600/30 mb-6">
+                <span class="text-orange-500 font-semibold uppercase tracking-wide text-sm">No Commitment</span>
+              </div>
+
+              <h2 id="trial-heading" class="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight mb-4">
+                Try Your First Class <span class="text-orange-500">Free</span>
+              </h2>
+
+              <p class="text-zinc-300 leading-relaxed mb-6">
+                Not sure which membership is right for you? Experience Summit firsthand with a
+                complimentary class. You'll get a full workout, meet our coaches, and see what
+                our community is all about — with zero obligation.
+              </p>
+
+              <ul class="space-y-2 text-zinc-400" role="list">
+                {['No credit card required', 'All equipment provided', 'Suitable for all fitness levels'].map((item) => (
+                  <li class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="flex-shrink-0">
+              <a href="/contact" class="btn-primary text-lg px-8">Book Free Class</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 md:py-24 bg-zinc-950" aria-labelledby="faq-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12 md:mb-16">
+          <div class="flex items-center justify-center gap-4 mb-4">
+            <div class="w-12 h-1 bg-orange-600" aria-hidden="true"></div>
+            <h2 id="faq-heading" class="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight">Common Questions</h2>
+            <div class="w-12 h-1 bg-orange-600" aria-hidden="true"></div>
+          </div>
+          <p class="text-zinc-400 max-w-2xl mx-auto">Everything you need to know about joining Summit Fitness & CrossFit</p>
+        </div>
+
+        <dl class="space-y-4">
+          {faqs.map((faq, index) => (
+            <div class="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
+              <dt>
+                <button
+                  type="button"
+                  class="faq-trigger w-full flex items-center justify-between p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-orange-500"
+                  aria-expanded="false"
+                  aria-controls={`faq-answer-${index}`}
+                >
+                  <span class="font-display text-lg font-bold uppercase tracking-tight pr-4">{faq.question}</span>
+                  <span class="faq-icon flex-shrink-0 ml-4 text-orange-500" aria-hidden="true">
+                    <svg class="w-6 h-6 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />
+                    </svg>
+                  </span>
+                </button>
+              </dt>
+              <dd id={`faq-answer-${index}`} class="faq-content hidden px-6 pb-6">
+                <p class="text-zinc-400 leading-relaxed">{faq.answer}</p>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24 bg-zinc-900 relative overflow-hidden" aria-labelledby="cta-heading">
+    <div class="absolute inset-0" aria-hidden="true">
+      <div class="absolute top-0 left-1/4 w-64 h-64 bg-orange-600/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-orange-600/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 id="cta-heading" class="font-display text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight mb-6">
+          Start Your <span class="text-orange-500">Transformation</span>
+        </h2>
+        <p class="text-lg text-zinc-300 mb-8 leading-relaxed">
+          Join hundreds of athletes who have found their strength at Summit.
+          Your journey to a healthier, stronger you begins with a single step.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="btn-primary text-lg">Join Summit Today</a>
+          <a
+            href="/schedule"
+            class="inline-flex items-center justify-center px-6 py-3 border-2 border-orange-600 text-orange-500 font-bold uppercase tracking-wide rounded transition-all duration-200 hover:bg-orange-600 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
+          >
+            View Class Schedule
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqTriggers = document.querySelectorAll('.faq-trigger');
+    faqTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        const content = trigger.closest('div')?.querySelector('.faq-content');
+        const icon = trigger.querySelector('.faq-icon svg');
+        faqTriggers.forEach((otherTrigger) => {
+          if (otherTrigger !== trigger) {
+            otherTrigger.setAttribute('aria-expanded', 'false');
+            otherTrigger.closest('div')?.querySelector('.faq-content')?.classList.add('hidden');
+            otherTrigger.querySelector('.faq-icon svg')?.classList.remove('rotate-45');
+          }
+        });
+        trigger.setAttribute('aria-expanded', String(!isExpanded));
+        content?.classList.toggle('hidden', isExpanded);
+        icon?.classList.toggle('rotate-45', !isExpanded);
+      });
+    });
+  });
+</script>

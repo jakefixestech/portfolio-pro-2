@@ -1,17 +1,106 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astrooooooo</h1>
-	</body>
-</html>
+<Layout
+  title="Summit Fitness & CrossFit | Littleton, NH"
+  description="Push your limits. Reach your summit. Join our community of dedicated athletes. Expert coaching, world-class facilities, and the motivation you need to transform your body and mind."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950" aria-hidden="true"></div>
+
+    <div class="absolute inset-0 opacity-10" aria-hidden="true">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-600 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-orange-700 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white uppercase tracking-tight">
+        Push Your Limits.<br />
+        <span class="text-orange-500">Reach Your Summit.</span>
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed">
+        Join our community of dedicated athletes. Expert coaching, world-class facilities, and the motivation you need to transform your body and mind.
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/membership" class="btn-primary text-lg px-8 py-4">
+          Start Your Journey
+        </a>
+        <a
+          href="/classes"
+          class="inline-flex items-center gap-2 text-white font-semibold hover:text-orange-500 focus:outline-none focus-visible:text-orange-500 focus-visible:underline transition-colors"
+        >
+          <span>View Classes</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 bg-zinc-900" aria-labelledby="features-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 id="features-heading" class="font-display text-3xl sm:text-4xl font-bold text-white uppercase">
+          Why Choose Summit?
+        </h2>
+        <p class="mt-4 text-zinc-400 max-w-2xl mx-auto">
+          More than a gym. A community dedicated to helping you achieve your fitness goals.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-zinc-800 rounded-lg p-8 text-center hover:bg-zinc-800/80 transition-colors">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-orange-600/20 flex items-center justify-center">
+            <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-white uppercase mb-3">Expert Coaches</h3>
+          <p class="text-zinc-400">Certified trainers dedicated to your success with personalized attention.</p>
+        </div>
+
+        <div class="bg-zinc-800 rounded-lg p-8 text-center hover:bg-zinc-800/80 transition-colors">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-orange-600/20 flex items-center justify-center">
+            <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-white uppercase mb-3">Premium Facility</h3>
+          <p class="text-zinc-400">State-of-the-art equipment and training spaces designed for results.</p>
+        </div>
+
+        <div class="bg-zinc-800 rounded-lg p-8 text-center hover:bg-zinc-800/80 transition-colors">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-orange-600/20 flex items-center justify-center">
+            <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-white uppercase mb-3">Real Results</h3>
+          <p class="text-zinc-400">Proven programs that deliver measurable progress and lasting change.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-orange-700 via-orange-600 to-orange-500" aria-labelledby="cta-heading">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 id="cta-heading" class="font-display text-3xl sm:text-4xl font-bold text-white uppercase">
+        Ready to Transform?
+      </h2>
+      <p class="mt-4 text-white/90 text-lg max-w-2xl mx-auto">
+        Your first class is on us. Experience the Summit difference and see why our members never look back.
+      </p>
+      <a
+        href="/membership"
+        class="mt-8 inline-flex items-center justify-center px-8 py-4 bg-zinc-950 text-white font-bold uppercase tracking-wide rounded hover:bg-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-orange-600 transition-colors"
+      >
+        Claim Your Free Class
+      </a>
+    </div>
+  </section>
+</Layout>
