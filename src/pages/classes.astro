@@ -120,15 +120,16 @@ function getDifficultyColor(difficulty: string): string {
 
               <p class="text-zinc-400 leading-relaxed flex-1 mb-6">{classItem.description}</p>
 
+              <!-- FIX: unique aria-label per link to eliminate redundant link alerts -->
               <a
                 href="/schedule"
+                aria-label={`View schedule for ${classItem.name}`}
                 class="inline-flex items-center gap-2 text-orange-500 font-semibold uppercase tracking-wide text-sm hover:text-orange-400 transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 rounded"
               >
                 View Schedule
                 <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-                <span class="sr-only">for {classItem.name}</span>
               </a>
             </article>
           </li>
