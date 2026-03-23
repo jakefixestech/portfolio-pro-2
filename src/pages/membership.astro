@@ -104,7 +104,6 @@ const faqs = [
                 ))}
               </ul>
 
-              <!-- FIX: unique aria-label per tier button -->
               <a
                 href="/contact"
                 aria-label={`Get started with the ${tier.name} membership`}
@@ -207,7 +206,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CTA — removed /contact button, keeping /schedule only to avoid redundant link alerts -->
   <section class="py-16 md:py-24 bg-zinc-900 relative overflow-hidden" aria-labelledby="cta-heading">
     <div class="absolute inset-0" aria-hidden="true">
       <div class="absolute top-0 left-1/4 w-64 h-64 bg-orange-600/5 rounded-full blur-3xl"></div>
@@ -222,15 +221,12 @@ const faqs = [
           Join hundreds of athletes who have found their strength at Summit.
           Your journey to a healthier, stronger you begins with a single step.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" aria-label="Join Summit today" class="btn-primary text-lg">Join Summit Today</a>
-          <a
-            href="/schedule"
-            class="inline-flex items-center justify-center px-6 py-3 border-2 border-orange-600 text-orange-500 font-bold uppercase tracking-wide rounded transition-all duration-200 hover:bg-orange-600 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
-          >
-            View Class Schedule
-          </a>
-        </div>
+        <a
+          href="/schedule"
+          class="inline-flex items-center justify-center px-8 py-4 border-2 border-orange-600 text-orange-500 font-bold uppercase tracking-wide rounded transition-all duration-200 hover:bg-orange-600 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 text-lg"
+        >
+          View Class Schedule
+        </a>
       </div>
     </div>
   </section>
