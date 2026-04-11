@@ -86,7 +86,8 @@ const subjects = [
                 class="w-full px-4 py-3 bg-zinc-950 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 transition-colors duration-200 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20"
                 placeholder="(555) 123-4567"
               />
-              <p id="phone-hint" class="mt-1 text-sm text-zinc-500">Optional — we'll only call if you request it</p>
+              <!-- Fixed: text-zinc-500 → text-zinc-400 -->
+              <p id="phone-hint" class="mt-1 text-sm text-zinc-400">Optional — we'll only call if you request it</p>
             </div>
 
             <!-- Subject -->
@@ -118,11 +119,12 @@ const subjects = [
                 class="w-full px-4 py-3 bg-zinc-950 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 transition-colors duration-200 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 resize-y"
                 placeholder="Tell us about your fitness goals or ask us anything..."
               ></textarea>
-              <p id="message-hint" class="mt-1 text-sm text-zinc-500">Minimum 20 characters</p>
+              <!-- Fixed: text-zinc-500 → text-zinc-400 -->
+              <p id="message-hint" class="mt-1 text-sm text-zinc-400">Minimum 20 characters</p>
             </div>
 
-            <!-- Required note -->
-            <p class="text-sm text-zinc-500">
+            <!-- Required note — Fixed: text-zinc-500 → text-zinc-400 -->
+            <p class="text-sm text-zinc-400">
               <span class="text-orange-500" aria-hidden="true">*</span> Required fields
             </p>
 
@@ -133,9 +135,10 @@ const subjects = [
               Send Message
             </button>
 
-            <p class="text-sm text-zinc-500 text-center">
+            <!-- Fixed: text-zinc-500 → text-zinc-400 -->
+            <p class="text-sm text-zinc-400 text-center">
               By submitting this form, you agree to our
-              <a href="/privacy" class="text-orange-500 hover:underline focus:outline-none focus-visible:underline">Privacy Policy</a>.
+              <a href="/privacy" class="text-orange-500 underline hover:no-underline focus:outline-none focus-visible:underline">Privacy Policy</a>.
             </p>
           </form>
         </div>
@@ -224,12 +227,13 @@ const subjects = [
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
+                <!-- Fixed: text-zinc-400 already correct here -->
                 <p class="text-zinc-400 text-sm">Google Maps Embed Placeholder</p>
                 <a
                   href="https://maps.google.com/?q=Littleton+NH"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 mt-3 text-orange-500 hover:underline focus:outline-none focus-visible:underline"
+                  class="inline-flex items-center gap-2 mt-3 text-orange-500 underline hover:no-underline focus:outline-none focus-visible:underline"
                 >
                   Open in Google Maps
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -237,16 +241,6 @@ const subjects = [
                   </svg>
                 </a>
               </div>
-              <!--
-                Replace placeholder with:
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=YOUR_EMBED_URL"
-                  width="100%" height="100%"
-                  style="border:0;" allowfullscreen="" loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  title="Summit Fitness & CrossFit location"
-                ></iframe>
-              -->
             </div>
           </div>
         </div>
