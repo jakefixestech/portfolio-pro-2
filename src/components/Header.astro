@@ -8,7 +8,7 @@ const navLinks = [
 ];
 ---
 
-<header class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-sm border-b border-zinc-800" role="banner">
+<header class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-sm border-b border-zinc-800 transition-transform duration-300" role="banner">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
@@ -189,6 +189,36 @@ const navLinks = [
 </header>
 
 <script>
+  // Smart navbar — hide on scroll down, show on scroll up
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+  const header = document.querySelector('header');
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > lastScrollY && currentScrollY > 80) {
+          // Scrolling down — hide
+          header?.classList.add('-translate-y-full');
+          // Also close mobile menu if open
+          const menuButton = document.getElementById('mobile-menu-button');
+          if (menuButton?.getAttribute('aria-expanded') === 'true') {
+            menuButton.click();
+          }
+        } else {
+          // Scrolling up — show
+          header?.classList.remove('-translate-y-full');
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
   // Mobile menu
   const menuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
