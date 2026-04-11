@@ -78,7 +78,8 @@ const faqs = [
           >
             {tier.highlighted && (
               <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-orange-600 text-white text-sm font-bold uppercase tracking-wide shadow-lg">
+                <!-- Fixed: bg-orange-600 → bg-orange-700 for contrast -->
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-orange-700 text-white text-sm font-bold uppercase tracking-wide shadow-lg">
                   Most Popular
                 </span>
               </div>
@@ -116,7 +117,8 @@ const faqs = [
         ))}
       </div>
 
-      <p class="text-center text-zinc-500 text-sm mt-8">All memberships include 24/7 member support and access to our mobile app</p>
+      <!-- Fixed: text-zinc-500 → text-zinc-400 -->
+      <p class="text-center text-zinc-400 text-sm mt-8">All memberships include 24/7 member support and access to our mobile app</p>
     </div>
   </section>
 
@@ -157,7 +159,7 @@ const faqs = [
             </div>
 
             <div class="flex-shrink-0">
-              <a href="/free-trial" aria-label="Book your free trial class" class="btn-primary text-lg px-8">Book Free Class</a>
+              <a href="/contact" aria-label="Book your free trial class" class="btn-primary text-lg px-8">Book Free Class</a>
             </div>
           </div>
         </div>
@@ -206,7 +208,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- CTA — removed /contact button, keeping /schedule only to avoid redundant link alerts -->
+  <!-- CTA -->
   <section class="py-16 md:py-24 bg-zinc-900 relative overflow-hidden" aria-labelledby="cta-heading">
     <div class="absolute inset-0" aria-hidden="true">
       <div class="absolute top-0 left-1/4 w-64 h-64 bg-orange-600/5 rounded-full blur-3xl"></div>
